@@ -18,11 +18,25 @@ class Equipe :
         
     def __str__(self):
         return f"Equipe : {self.nom} , {self.membres}"
+    
+    def get_equipe(self):
+        return self.nom, self.membres
+    
+    def set_nom(self,nom):
+        self.nom = nom
+    
+    def set_membres(self, membres):
+        self.membres=membres
 
 #fonction qui parcours la liste d'équipe une fois terminée et qui crée des objets pour chaque éléments à l'intéreur et les ajoutent à une nouvelle liste
 def creer_equipes():
     for i in range(len(liste_equipe)) : 
         liste_equipe[i][0] = Equipe(nom=liste_equipe[i][0],membres = liste_equipe[i][1])
         liste_test.append(liste_equipe[i][0])
+        for i in range(len(liste_test)):
+            print(liste_test[i])
+        
+ajouter_equipe("Equipe1","Roman")
+ajouter_equipe("Equipe2","Moi")
         
     
