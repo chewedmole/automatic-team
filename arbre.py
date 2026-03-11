@@ -43,10 +43,40 @@ class Arbre:
             if self.sad is not None:
                 self.sad.afficher_arbre_infixe()
 
-#jeu de tests
-arb = Arbre("E1")
-arb.setGauche(Arbre("A1"))
-arb.sag.setGauche(Arbre("A2"))
-arb.sag.setDroit(Arbre("E2"))
+def generation(lst_eq, lst_act):
+    liste_arbres = []
 
-arb.afficher_arbre_infixe()
+    #INIT des arbres
+    for eq in lst_eq:
+        liste_arbres.append(Arbre(eq.nom))
+
+
+    for _ in range(len(lst_act)):
+        for act in lst_act:
+            nb_equipes_act = act.nb_equipe
+            X = 0
+            lst_arbs_mm_act = [] #variable temporelle pour garder les equipes dans les memes activites
+            for arbre in liste_arbres:
+                if arbre.sag is None:
+                    arbre.sag = Arbre(act.get_nom())
+                    X += 1
+                    lst_arbs_mm_act.append(arbre)
+                    #On rajoute le equipes a droite pour les memes activites
+                    if X != 1 and X==nb_equipes_act:
+                        for arb in lst_arbs_mm_act:
+                            arbre.sad = arb.getCle()
+    return liste_arbres
+    '''
+    Une vérification d'ajout d'une activité
+    Le cas dans lequel il n'y a pas assez d'equipes
+
+    if nb_feuille(liste_arbre) == 0:
+        if X != Nb_eq_act:
+            Y = Nb_eq_act - X
+            return "Il manque au moins" + str(Y) + "équipe(s)" + "ou, supprimez une activité demandant" + str(Y) + "groupe(s)"
+    '''
+                    
+
+#jeu de tests-----------------------------------------------
+
+
