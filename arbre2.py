@@ -15,4 +15,10 @@ class Arbre:
         return len(self.sous_arbs) == 0
         
 
-def generation_arbre_combinaison(elems:list, arb):
+def generation_arbre_combinaison(elems):
+    e=[Arbre(elems[0], []) for i in range(len(elems))]
+    arbre=Arbre(None, e)
+    for j in range(1, len(elems)):
+        for i in range(len(arbre.getNiveau())):
+            arbre.sous_arbs[i].aujouterSousBranche(Arbre(elems[j], []))
+    return arbre
