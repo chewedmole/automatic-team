@@ -4,6 +4,7 @@ class Equipe :
     def __init__(self,nom,membres):
         self.nom = nom
         self.membres = membres
+        self.liste_act = []
         
     def __str__(self):
         return f"Equipe : {self.nom} , {self.membres}"
@@ -16,4 +17,10 @@ class Equipe :
     
     def set_membres(self, membres):
         self.membres=membres
+
+    def get_liste_act(self):
+        return self.liste_act
+    
+    def ajouter_activite(self, act):
+        self.liste_act.append(act)
 
