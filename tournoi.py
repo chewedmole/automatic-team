@@ -5,6 +5,7 @@ import atelier
 import equipe
 
 
+
 #création de la classe tournoi
 class Tournoi :
     
@@ -45,3 +46,5 @@ def ajouter_equipe(nom,membres):
     liste.append(str(nom))
     liste.append(str(membres))
     equipes.append(liste)        
+
+st.title('Coucou')
