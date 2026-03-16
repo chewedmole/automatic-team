@@ -29,3 +29,34 @@ lst_ateliers=[A1, A2, A3]
 for arb in Arbre.generation(lst_equipes, lst_ateliers):
     arb.afficher_arbre_infixe()
     print("----------")
+
+def generation_combinaison(cas:list, n:int)->list:
+    """
+    Fonction qui crée une liste de listes de toutes les combinaisons possibles
+
+    Paramètres:
+        cas - une liste de toutes les possibilités
+        n - le nombre de combinaisons à générer
+    """
+    tab = []
+    #première génération de tableau
+    for i in range(n):
+        ligne = File() #l'enregistrement du tableau
+        for c in cas:
+            ligne.enfiler(c)
+        tab.append(ligne)
+
+    #tri de cas de sorte qu'il ne se répètent pas
+    for i in range(1,len(tab)):
+        #on compare l'abre précédent avec le prohain
+        for j in range(len(tab[i].L)):
+            if tab[i].L[j] == tab[i-1].L[j]:
+                temp = tab[i].defiler()
+                tab[i].enfiler(temp)
+
+    return tab
+    
+liste = generation_combinaison([1,2,3], 3)
+
+for elt in liste:
+    print(elt.L)
