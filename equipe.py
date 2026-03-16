@@ -1,6 +1,5 @@
 #crée des objets de type équipes possédant un nom et la liste des membres de l'équipe
-class Equipe : 
-    
+class Equipe :
     def __init__(self,nom,membres):
         self.nom = nom
         self.membres = membres
