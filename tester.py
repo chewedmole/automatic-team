@@ -46,17 +46,44 @@ def generation_combinaison(cas:list, n:int)->list:
             ligne.enfiler(c)
         tab.append(ligne)
 
-    #tri de cas de sorte qu'il ne se répètent pas
-    for i in range(1,len(tab)):
-        #on compare l'abre précédent avec le prohain
-        for j in range(len(tab[i].L)):
-            if tab[i].L[j] == tab[i-1].L[j]:
-                temp = tab[i].defiler()
-                tab[i].enfiler(temp)
+    dec_file = 0 #décalage de l'enfilement
+    for i in range(0,len(tab)):
+        for _ in range(dec_file):
+            temp = tab[i].defiler()
+            tab[i].enfiler(temp)
+        dec_file += 1
+            
+    
+    
+    return tab
 
+def generation_combinaison_repetition(cas:list, n:int, kelems:int)->list:
+    """
+    Fonction qui crée une liste de liste de combinaisons de k-uplets possibles
+    
+
+    Parameters
+    ----------
+    cas : list
+        une liste de toutes les possibilités
+    n : int
+        le nombre de combinaisons à générer
+    kelems : int
+        le nombre des éléments à conserver
+
+    """
+    combi = generation_combinaison(cas, n)
+    tab = []
+    
+    for _ in range(len(combi)):
+        tab.append([])
+        
+            
+    for i in range(len(tab)):
+        for j in range(kelems): #conservation des nombres
+            tab[i].append(combi[i].L[j])
+            
     return tab
     
-liste = generation_combinaison([1,2,3], 3)
 
-for elt in liste:
-    print(elt.L)
+    
